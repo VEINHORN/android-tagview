@@ -4,9 +4,14 @@
         <attr name="tagType" format="enum">
             <enum name="classic" value="0"/>
             <enum name="modern" value="1"/>
-            <enum name="triangle" value="2"/>
+            <enum name="trapezium" value="2"/>
+            <enum name="modern_trapezium" value="3"/>
         </attr>
         <attr name="tagColor" format="color"/>
         <attr name="tagUpperCase" format="boolean"/>
+        <attr name="tagBorderRadius" format="integer"/>
+        <attr name="tagCircleRadius" format="integer"/>
+        <attr name="tagCircleColor" format="color"/>
+        <attr name="tagTextColor" format="color"/>
     </declare-styleable>
 </resources>

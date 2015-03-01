@@ -5,14 +5,63 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context=".MainActivity">
-    <com.veinhorn.tagview.TagView
-        android:id="@+id/tagView"
-        android:text="Text"
-        android:textSize="20sp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        app:tagType="modern"
-        app:tagUpperCase="false"/>
+        android:layout_centerHorizontal="true">
+        <com.veinhorn.tagview.TagView
+            android:id="@+id/tagView"
+            android:layout_margin="5px"
+            android:text="Movies"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:tagType="modern"
+            app:tagColor="@android:color/holo_purple"
+            app:tagUpperCase="true"
+            app:tagBorderRadius="20"
+            app:tagCircleColor="#000000"
+            app:tagTextColor="#000000"/>
+        <com.veinhorn.tagview.TagView
+            android:id="@+id/tagView2"
+            android:text="Images"
+            android:layout_margin="5px"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:tagType="modern"
+            app:tagColor="@android:color/holo_green_dark"
+            app:tagUpperCase="true"/>
+        <com.veinhorn.tagview.TagView
+            android:id="@+id/tagView3"
+            android:text="Music"
+            android:layout_margin="5px"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:tagType="modern"
+            app:tagColor="@android:color/holo_orange_light"
+            app:tagUpperCase="true"/>
+        <com.veinhorn.tagview.TagView
+            android:id="@+id/tagView4"
+            android:text="Other"
+            android:layout_margin="5px"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:tagType="modern_trapezium"
+            app:tagColor="#000000"
+            app:tagUpperCase="true"/>
+    </LinearLayout>
 </RelativeLayout>
+    <!--app:tagColor="#ff861044"-->
