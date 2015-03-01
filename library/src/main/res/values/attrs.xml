@@ -6,6 +6,9 @@
             <enum name="modern" value="1"/>
             <enum name="trapezium" value="2"/>
             <enum name="modern_trapezium" value="3"/>
+            <enum name="modern_reversed" value="4"/>
+            <enum name="trapezium_reversed" value="5"/>
+            <enum name="modern_trapezium_reversed" value="6"/>
         </attr>
         <attr name="tagColor" format="color"/>
         <attr name="tagUpperCase" format="boolean"/>

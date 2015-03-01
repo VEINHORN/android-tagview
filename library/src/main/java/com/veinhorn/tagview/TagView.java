@@ -47,6 +47,9 @@ public class TagView extends TextView {
     public static final int MODERN = 1;
     public static final int TRAPEZIUM = 2;
     public static final int MODERN_TRAPEZIUM = 3;
+    public static final int MODERN_REVERSED = 4;
+    public static final int TRAPEZIUM_REVERSED = 5;
+    public static final int MODERN_TRAPEZIUM_REVERSED = 6;
 
     private class TagDrawable extends Drawable {
         @Override
@@ -58,6 +61,10 @@ public class TagView extends TextView {
             else if(tagType == MODERN) drawModernTag(getBounds(), canvas);
             else if(tagType == TRAPEZIUM) drawTrapeziumTag(getBounds(), canvas);
             else if(tagType == MODERN_TRAPEZIUM) drawModernTrapeziumTag(getBounds(), canvas);
+            else if(tagType == MODERN_REVERSED) drawModernReversedTag(getBounds(), canvas);
+            else if(tagType == TRAPEZIUM_REVERSED) drawTrapeziumReversedTag(getBounds(), canvas);
+            else if(tagType == MODERN_TRAPEZIUM_REVERSED) drawModernTrapeziumReversedTag(getBounds(), canvas);
+            else drawClassicTag(getBounds(), canvas);
         }
 
         @Override
@@ -86,6 +93,33 @@ public class TagView extends TextView {
         }
 
         init();
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        if(tagUpperCase) setText(getText().toString().toUpperCase());
+        super.onDraw(canvas);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            setBackground(new TagDrawable());
+        } else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            setBackgroundDrawable(new TagDrawable());
+        }
+    }
+
+    private void init() {
+        backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        backgroundPaint.setColor(tagColor);
+
+        circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        circlePaint.setColor(tagCircleColor);
+
+        trianglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        trianglePaint.setColor(tagColor);
+        trianglePaint.setStyle(Paint.Style.FILL);
+    }
+
+    private RectF getBoundsForText(Rect bounds) {
+        return new RectF(bounds.left, bounds.top, bounds.right, bounds.bottom);
     }
 
     private void drawClassicTag(Rect bounds, Canvas canvas) {
@@ -132,31 +166,41 @@ public class TagView extends TextView {
         setTextColor(tagTextColor);
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        if(tagUpperCase) setText(getText().toString().toUpperCase());
-        super.onDraw(canvas);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(new TagDrawable());
-        } else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            setBackgroundDrawable(new TagDrawable());
-        }
+    private void drawModernReversedTag(Rect bounds, Canvas canvas) {
+        setPadding(leftPadding, topPadding, rightPadding * 2, bottomPadding);
+        RectF formattedBounds = getBoundsForText(bounds);
+        canvas.drawRoundRect(formattedBounds, tagBorderRadius, tagBorderRadius, backgroundPaint);
+        float xPosition = formattedBounds.right - rightPadding;
+        float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
+        canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
+        setTextColor(tagTextColor);
     }
 
-    private void init() {
-        backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        backgroundPaint.setColor(tagColor);
-
-        circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        circlePaint.setColor(tagCircleColor);
-
-        trianglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        trianglePaint.setColor(tagColor);
-        trianglePaint.setStyle(Paint.Style.FILL);
+    private void drawTrapeziumReversedTag(Rect bounds, Canvas canvas) {
+        setPadding(leftPadding * 3, topPadding, rightPadding, bottomPadding);
+        RectF formattedBounds = getBoundsForText(bounds);
+        RectF rect = new RectF(formattedBounds);
+        rect.left += rightPadding * 3;
+        float y = (rect.bottom - rect.top) / 2;
+        canvas.drawRect(rect, backgroundPaint);
+        Path trianglePath = getReversedTrianglePath(rect, y);
+        canvas.drawPath(trianglePath, trianglePaint);
+        setTextColor(tagTextColor);
     }
 
-    private RectF getBoundsForText(Rect bounds) {
-        return new RectF(bounds.left, bounds.top, bounds.right, bounds.bottom);
+    private void drawModernTrapeziumReversedTag(Rect bounds, Canvas canvas) {
+        setPadding(leftPadding * 3, topPadding, rightPadding * 2, bottomPadding);
+        RectF formattedBounds = getBoundsForText(bounds);
+        RectF rect = new RectF(formattedBounds);
+        rect.left += rightPadding * 3;
+        float y = (rect.bottom - rect.top) / 2;
+        canvas.drawRect(rect, backgroundPaint);
+        float xPosition = formattedBounds.right - rightPadding;
+        float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
+        canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
+        Path trianglePath = getReversedTrianglePath(rect, y);
+        canvas.drawPath(trianglePath, trianglePaint);
+        setTextColor(tagTextColor);
     }
 
     private Path getTrianglePath(RectF rect, float y) {
@@ -166,6 +210,16 @@ public class TagView extends TextView {
         path.lineTo(rect.right + rightPadding * 3, y);
         path.lineTo(rect.right, rect.bottom);
         path.lineTo(rect.right, rect.top);
+        return path;
+    }
+
+    private Path getReversedTrianglePath(RectF rect, float y) {
+        Path path = new Path();
+        path.setFillType(Path.FillType.EVEN_ODD);
+        path.moveTo(rect.left, rect.top);
+        path.lineTo(rect.left - leftPadding * 3, y);
+        path.lineTo(rect.left, rect.bottom);
+        path.lineTo(rect.left, rect.top);
         return path;
     }
 }

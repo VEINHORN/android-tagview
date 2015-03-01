@@ -23,9 +23,7 @@
             app:tagType="modern"
             app:tagColor="@android:color/holo_purple"
             app:tagUpperCase="true"
-            app:tagBorderRadius="20"
-            app:tagCircleColor="#000000"
-            app:tagTextColor="#000000"/>
+            app:tagBorderRadius="20"/>
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView2"
             android:text="Images"
@@ -59,9 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagType="modern_trapezium"
             app:tagColor="#000000"
-            app:tagUpperCase="true"/>
+            app:tagUpperCase="true"
+            app:tagType="modern_trapezium_reversed"/>
     </LinearLayout>
 </RelativeLayout>
     <!--app:tagColor="#ff861044"-->
