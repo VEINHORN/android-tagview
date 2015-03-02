@@ -19,11 +19,10 @@ import android.widget.TextView;
  */
 
 public class TagView extends TextView {
-    private int leftPadding = 15;
-    private int rightPadding = 15;
-    private int topPadding = 10;
-    private int bottomPadding = 10;
-
+    private static final int LEFT_PADDING_DEFAULT = 15;
+    private static final int RIGHT_PADDIND_DEFAULT = 15;
+    private static final int TOP_PADDING_DEFAULT = 10;
+    private static final int BOTTOM_PADDING_DEFAULT = 10;
     private static final int TEXT_COLOR_DEFAULT = Color.WHITE;
     private static final int CIRCLE_COLOR_DEFAULT = Color.WHITE;
     private static final int BORDER_RADIUS_DEFAULT = 5;
@@ -42,6 +41,11 @@ public class TagView extends TextView {
     private int tagCircleColor;
     private int tagTextColor;
     //////////////////
+
+    private int tagLeftPadding;
+    private int tagRightPadding;
+    private int tagTopPadding;
+    private int tagBottomPadding;
 
     public static final int CLASSIC = 0;
     public static final int MODERN = 1;
@@ -78,7 +82,7 @@ public class TagView extends TextView {
 
     public TagView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        initPadding();
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TagView, 0, 0);
         try {
             tagType = typedArray.getInteger(R.styleable.TagView_tagType, CLASSIC);
@@ -118,32 +122,47 @@ public class TagView extends TextView {
         trianglePaint.setStyle(Paint.Style.FILL);
     }
 
+    private void initPadding() {
+        int left = getPaddingLeft();
+        int right = getPaddingRight();
+        int top = getPaddingTop();
+        int bottom = getPaddingBottom();
+        if(left == 0) tagLeftPadding = LEFT_PADDING_DEFAULT;
+        else tagLeftPadding = left;
+        if(right == 0) tagRightPadding = RIGHT_PADDIND_DEFAULT;
+        else tagRightPadding = right;
+        if(top == 0) tagTopPadding = TOP_PADDING_DEFAULT;
+        else tagTopPadding = top;
+        if(bottom == 0) tagBottomPadding = BOTTOM_PADDING_DEFAULT;
+        else tagBottomPadding = bottom;
+    }
+
     private RectF getBoundsForText(Rect bounds) {
         return new RectF(bounds.left, bounds.top, bounds.right, bounds.bottom);
     }
 
     private void drawClassicTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         canvas.drawRoundRect(formattedBounds, tagBorderRadius, tagBorderRadius, backgroundPaint);
         setTextColor(tagTextColor);
     }
 
     private void drawModernTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding * 2, topPadding, rightPadding, bottomPadding);
+        setPadding(tagLeftPadding * 2, tagTopPadding, tagRightPadding, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         canvas.drawRoundRect(formattedBounds, tagBorderRadius, tagBorderRadius, backgroundPaint);
-        float xPosition = formattedBounds.left + leftPadding;
+        float xPosition = formattedBounds.left + tagLeftPadding;
         float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
         canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
         setTextColor(tagTextColor);
     }
 
     private void drawTrapeziumTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding, topPadding, rightPadding * 3, bottomPadding);
+        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding * 3, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.right -= rightPadding * 3;
+        rect.right -= tagRightPadding * 3;
         float y = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
         Path trianglePath = getTrianglePath(rect, y);
@@ -152,13 +171,13 @@ public class TagView extends TextView {
     }
 
     private void drawModernTrapeziumTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding * 2, topPadding, rightPadding * 3, bottomPadding);
+        setPadding(tagLeftPadding * 2, tagTopPadding, tagRightPadding * 3, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.right -= rightPadding * 3;
+        rect.right -= tagRightPadding * 3;
         float y = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
-        float xPosition = formattedBounds.left + leftPadding;
+        float xPosition = formattedBounds.left + tagLeftPadding;
         float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
         canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
         Path trianglePath = getTrianglePath(rect, y);
@@ -167,20 +186,20 @@ public class TagView extends TextView {
     }
 
     private void drawModernReversedTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding, topPadding, rightPadding * 2, bottomPadding);
+        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding * 2, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         canvas.drawRoundRect(formattedBounds, tagBorderRadius, tagBorderRadius, backgroundPaint);
-        float xPosition = formattedBounds.right - rightPadding;
+        float xPosition = formattedBounds.right - tagRightPadding;
         float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
         canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
         setTextColor(tagTextColor);
     }
 
     private void drawTrapeziumReversedTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding * 3, topPadding, rightPadding, bottomPadding);
+        setPadding(tagLeftPadding * 3, tagTopPadding, tagRightPadding, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.left += rightPadding * 3;
+        rect.left += tagRightPadding * 3;
         float y = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
         Path trianglePath = getReversedTrianglePath(rect, y);
@@ -189,13 +208,13 @@ public class TagView extends TextView {
     }
 
     private void drawModernTrapeziumReversedTag(Rect bounds, Canvas canvas) {
-        setPadding(leftPadding * 3, topPadding, rightPadding * 2, bottomPadding);
+        setPadding(tagLeftPadding * 3, tagTopPadding, tagRightPadding * 2, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.left += rightPadding * 3;
+        rect.left += tagRightPadding * 3;
         float y = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
-        float xPosition = formattedBounds.right - rightPadding;
+        float xPosition = formattedBounds.right - tagRightPadding;
         float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
         canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
         Path trianglePath = getReversedTrianglePath(rect, y);
@@ -207,7 +226,7 @@ public class TagView extends TextView {
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
         path.moveTo(rect.right, rect.top);
-        path.lineTo(rect.right + rightPadding * 3, y);
+        path.lineTo(rect.right + tagRightPadding * 3, y);
         path.lineTo(rect.right, rect.bottom);
         path.lineTo(rect.right, rect.top);
         return path;
@@ -217,7 +236,7 @@ public class TagView extends TextView {
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
         path.moveTo(rect.left, rect.top);
-        path.lineTo(rect.left - leftPadding * 3, y);
+        path.lineTo(rect.left - tagLeftPadding * 3, y);
         path.lineTo(rect.left, rect.bottom);
         path.lineTo(rect.left, rect.top);
         return path;
@@ -293,5 +312,55 @@ public class TagView extends TextView {
         this.tagTextColor = tagTextColor;
         invalidate();
         requestLayout();
+    }
+    
+    public int getTagLeftPadding() {
+        return tagLeftPadding;
+    }
+
+    public void setTagLeftPadding(int tagLeftPadding) {
+        this.tagLeftPadding = tagLeftPadding;
+        invalidate();
+        requestLayout();
+    }
+
+    public int getTagRightPadding() {
+        return tagRightPadding;
+    }
+
+    public void setTagRightPadding(int tagRightPadding) {
+        this.tagRightPadding = tagRightPadding;
+        invalidate();
+        requestLayout();
+    }
+
+    public int getTagTopPadding() {
+        return tagTopPadding;
+    }
+
+    public void setTagTopPadding(int tagTopPadding) {
+        this.tagTopPadding = tagTopPadding;
+        invalidate();
+        requestLayout();
+    }
+
+    public int getTagBottomPadding() {
+        return tagBottomPadding;
+    }
+
+    public void setTagBottomPadding(int tagBottomPadding) {
+        this.tagBottomPadding = tagBottomPadding;
+        invalidate();
+        requestLayout();
+
+    }
+
+    @Override
+    public void setPadding(int left, int top, int right, int bottom) {
+        setPadding(left, top, right, bottom);
+        this.tagLeftPadding = left;
+        this.tagRightPadding = right;
+        this.tagTopPadding = top;
+        this.tagBottomPadding = bottom;
     }
 }
