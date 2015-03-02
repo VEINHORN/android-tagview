@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class TagView extends TextView {
     private static final int LEFT_PADDING_DEFAULT = 15;
-    private static final int RIGHT_PADDIND_DEFAULT = 15;
+    private static final int RIGHT_PADDING_DEFAULT = 15;
     private static final int TOP_PADDING_DEFAULT = 10;
     private static final int BOTTOM_PADDING_DEFAULT = 10;
     private static final int TEXT_COLOR_DEFAULT = Color.WHITE;
@@ -129,7 +129,7 @@ public class TagView extends TextView {
         int bottom = getPaddingBottom();
         if(left == 0) tagLeftPadding = LEFT_PADDING_DEFAULT;
         else tagLeftPadding = left;
-        if(right == 0) tagRightPadding = RIGHT_PADDIND_DEFAULT;
+        if(right == 0) tagRightPadding = RIGHT_PADDING_DEFAULT;
         else tagRightPadding = right;
         if(top == 0) tagTopPadding = TOP_PADDING_DEFAULT;
         else tagTopPadding = top;
