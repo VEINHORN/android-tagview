@@ -82,7 +82,7 @@ public class TagView extends TextView {
 
     public TagView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initPadding();
+
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TagView, 0, 0);
         try {
             tagType = typedArray.getInteger(R.styleable.TagView_tagType, CLASSIC);
@@ -95,7 +95,7 @@ public class TagView extends TextView {
         } finally {
             typedArray.recycle();
         }
-
+        initPadding();
         init();
     }
 
@@ -353,14 +353,5 @@ public class TagView extends TextView {
         invalidate();
         requestLayout();
 
-    }
-
-    @Override
-    public void setPadding(int left, int top, int right, int bottom) {
-        setPadding(left, top, right, bottom);
-        this.tagLeftPadding = left;
-        this.tagRightPadding = right;
-        this.tagTopPadding = top;
-        this.tagBottomPadding = bottom;
     }
 }
