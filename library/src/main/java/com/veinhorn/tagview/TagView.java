@@ -222,4 +222,76 @@ public class TagView extends TextView {
         path.lineTo(rect.left, rect.top);
         return path;
     }
+
+    public int getTagType() {
+        return tagType;
+    }
+
+    public void setTagType(int tagType) {
+        this.tagType = tagType;
+        invalidate();
+        requestLayout();
+    }
+
+    public int getTagColor() {
+        return tagColor;
+    }
+
+    public void setTagColor(int tagColor) {
+        this.tagColor = tagColor;
+        init();
+        invalidate();
+        requestLayout();
+    }
+
+    public boolean isTagUpperCase() {
+        return tagUpperCase;
+    }
+
+    public void setTagUpperCase(boolean tagUpperCase) {
+        this.tagUpperCase = tagUpperCase;
+        invalidate();
+        requestLayout();
+    }
+
+    public float getTagBorderRadius() {
+        return tagBorderRadius;
+    }
+
+    public void setTagBorderRadius(int tagBorderRadius) {
+        this.tagBorderRadius = tagBorderRadius;
+        invalidate();
+        requestLayout();
+    }
+
+    public float getTagCircleRadius() {
+        return  tagCircleRadius;
+    }
+
+    public void setTagCircleRadius(float tagCircleRadius) {
+        this.tagCircleRadius = tagCircleRadius;
+        invalidate();
+        requestLayout();
+    }
+
+    public int getTagCircleColor() {
+        return tagCircleColor;
+    }
+
+    public void setTagCircleColor(int tagCircleColor) {
+        this.tagCircleColor = tagCircleColor;
+        init();
+        invalidate();
+        requestLayout();
+    }
+
+    public int getTagTextColor() {
+        return tagTextColor;
+    }
+
+    public void setTagTextColor(int tagTextColor) {
+        this.tagTextColor = tagTextColor;
+        invalidate();
+        requestLayout();
+    }
 }

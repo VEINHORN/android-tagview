@@ -21,9 +21,8 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             app:tagType="modern"
-            app:tagColor="@android:color/holo_purple"
-            app:tagUpperCase="true"
-            app:tagBorderRadius="20"/>
+            app:tagColor="#ffaa66cc"
+            app:tagUpperCase="true"/>
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView2"
             android:text="Images"
@@ -34,7 +33,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             app:tagType="modern"
-            app:tagColor="@android:color/holo_green_dark"
+            app:tagColor="#ff669900"
             app:tagUpperCase="true"/>
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView3"
@@ -46,7 +45,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             app:tagType="modern"
-            app:tagColor="@android:color/holo_orange_light"
+            app:tagColor="#ffffbb33"
             app:tagUpperCase="true"/>
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView4"
@@ -57,9 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagColor="#000000"
-            app:tagUpperCase="true"
-            app:tagType="modern_trapezium_reversed"/>
+            app:tagType="modern"
+            app:tagColor="#bd292f34"
+            app:tagUpperCase="true"/>
     </LinearLayout>
 </RelativeLayout>
-    <!--app:tagColor="#ff861044"-->

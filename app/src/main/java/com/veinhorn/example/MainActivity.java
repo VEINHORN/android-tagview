@@ -16,5 +16,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tagView = (TagView)findViewById(R.id.tagView);
+        tagView.setTagType(TagView.TRAPEZIUM);
     }
 }
