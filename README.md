@@ -1,5 +1,5 @@
 # Android TagView
-Android library for creating different tags for your content.
+Android library for creating different tags for your content. Library uses TextView as a parent class. Example usages can be found in app module (folder).
 
 #Usage
 ```xml
@@ -40,21 +40,26 @@ Android library for creating different tags for your content.
             app:tagType="modern"
             app:tagColor="#ff669900"
             app:tagUpperCase="true"/>
-        <com.veinhorn.tagview.TagView
-            android:id="@+id/tagView3"
-            android:text="Music"
-            android:layout_margin="5px"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            app:tagType="modern"
-            app:tagColor="#ffffbb33"
-            app:tagUpperCase="true"/>
     </LinearLayout>
 </RelativeLayout>
 ```
+#Padding
+The default padding values for TagView is:
+* left - 15dp
+* right - 15dp
+* top - 10dp
+* bottom - 10dp
+
+But you can set up your own padding with getters and setters.
+
+#Tag types
+* TagView.CLASSIC
+* TagView.MODERN
+* TagView.TRAPEZIUM
+* TagView.MODERN_TRAPEZIUM
+* TagView.MODERN_REVERSED
+* TagView.TRAPEZIUM_REVERSED
+* TagView.MODERN_TRAPEZIUM_REVERSED
 
 #Screenshots
 ![ScreenShot](http://i.imgur.com/Kiu5jsI.png?1)
