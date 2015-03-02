@@ -23,26 +23,33 @@ Android library for creating different tags for your content. Library uses TextV
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             app:tagType="modern"
             app:tagColor="#ffaa66cc"
             app:tagUpperCase="true"/>
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView2"
             android:text="Images"
-            android:layout_margin="5px"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            app:tagType="modern"
+            app:tagType="classic"
             app:tagColor="#ff669900"
             app:tagUpperCase="true"/>
     </LinearLayout>
 </RelativeLayout>
 ```
+Customization
+---------------
+TagView extends TextView, so you can use all TextView methods and xml properties
+
+* ```tagType``` - selecting type of tag(classic, modern, trapezium, modern_trapezium, modern_reversed, etc.).
+* ```tagColor``` - background color of tag.
+* ```tagUpperCase``` - making every tag uppercase.
+* ```tagBorderRadius``` - setting border radius of tag
+* ```tagCircleRadius``` - radius of crop that is inside of tag
+* ```tagCircleColor``` - color of tag circle that is inside of tag
+* ```tagTextColor``` - color of text
+
 #Padding
 The default padding values for TagView is:
 * left - 15dp
@@ -68,18 +75,6 @@ But you can set up your own padding with getters and setters.
 ![ScreenShot](http://i.imgur.com/qfTtlWv.png?1)
 ![ScreenShot](http://i.imgur.com/V9cl2Ao.png?1)
 ![ScreenShot](http://i.imgur.com/WUttZQv.png?1)
-
-Customization
----------------
-TagView extends TextView, so you can use all TextView methods and xml properties
-
-* ```tagType``` - selecting type of tag(classic, modern, trapezium, modern_trapezium, modern_reversed, etc.).
-* ```tagColor``` - background color of tag.
-* ```tagUpperCase``` - making every tag uppercase.
-* ```tagBorderRadius``` - setting border radius of tag
-* ```tagCircleRadius``` - radius of crop that is inside of tag
-* ```tagCircleColor``` - color of tag circle that is inside of tag
-* ```tagTextColor``` - color of text
 
 #License
 ===============
