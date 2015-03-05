@@ -28,6 +28,9 @@ public class TagView extends TextView {
     private static final int BORDER_RADIUS_DEFAULT = 5;
     private static final int CIRCLE_RADIUS_DEFAULT = 7;
 
+    private static final int MODERN_TAG_MULTIPLIER = 2; // used to draw crop inside modern tag
+    private static final int TRAPEZIUM_TAG_MULTIPLIER = 3; // used to draw triangle for trapezium tag
+
     private Paint backgroundPaint;
     private Paint circlePaint;
     private Paint trianglePaint;
@@ -95,6 +98,7 @@ public class TagView extends TextView {
         } finally {
             typedArray.recycle();
         }
+
         initPadding();
         init();
     }
@@ -110,6 +114,9 @@ public class TagView extends TextView {
         }
     }
 
+    /**
+     * Initializes Paint objects that will be used to draw tags, speed up draw method
+     */
     private void init() {
         backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         backgroundPaint.setColor(tagColor);
@@ -122,6 +129,9 @@ public class TagView extends TextView {
         trianglePaint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * Set default values for padding, if you not specify it in xml layout
+     */
     private void initPadding() {
         int left = getPaddingLeft();
         int right = getPaddingRight();
@@ -137,6 +147,11 @@ public class TagView extends TextView {
         else tagBottomPadding = bottom;
     }
 
+    /**
+     * Converts Rect object to RectF
+     * @param bounds is a Rect object that holds four int coordinates for a rectangle
+     * @return RectF object that holds four float coordinates for a rectangle
+     */
     private RectF getBoundsForText(Rect bounds) {
         return new RectF(bounds.left, bounds.top, bounds.right, bounds.bottom);
     }
@@ -149,7 +164,7 @@ public class TagView extends TextView {
     }
 
     private void drawModernTag(Rect bounds, Canvas canvas) {
-        setPadding(tagLeftPadding * 2, tagTopPadding, tagRightPadding, tagBottomPadding);
+        setPadding(tagLeftPadding * MODERN_TAG_MULTIPLIER, tagTopPadding, tagRightPadding, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         canvas.drawRoundRect(formattedBounds, tagBorderRadius, tagBorderRadius, backgroundPaint);
         float xPosition = formattedBounds.left + tagLeftPadding;
@@ -159,34 +174,34 @@ public class TagView extends TextView {
     }
 
     private void drawTrapeziumTag(Rect bounds, Canvas canvas) {
-        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding * 3, tagBottomPadding);
+        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.right -= tagRightPadding * 3;
-        float y = (rect.bottom - rect.top) / 2;
+        rect.right -= tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER;
+        float halfOfRectHeight = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
-        Path trianglePath = getTrianglePath(rect, y);
+        Path trianglePath = getTrianglePath(rect, halfOfRectHeight);
         canvas.drawPath(trianglePath, trianglePaint);
         setTextColor(tagTextColor);
     }
 
     private void drawModernTrapeziumTag(Rect bounds, Canvas canvas) {
-        setPadding(tagLeftPadding * 2, tagTopPadding, tagRightPadding * 3, tagBottomPadding);
+        setPadding(tagLeftPadding * MODERN_TAG_MULTIPLIER, tagTopPadding, tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.right -= tagRightPadding * 3;
-        float y = (rect.bottom - rect.top) / 2;
+        rect.right -= tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER;
+        float halfOfRectHeight = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
         float xPosition = formattedBounds.left + tagLeftPadding;
         float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
         canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
-        Path trianglePath = getTrianglePath(rect, y);
+        Path trianglePath = getTrianglePath(rect, halfOfRectHeight);
         canvas.drawPath(trianglePath, trianglePaint);
         setTextColor(tagTextColor);
     }
 
     private void drawModernReversedTag(Rect bounds, Canvas canvas) {
-        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding * 2, tagBottomPadding);
+        setPadding(tagLeftPadding, tagTopPadding, tagRightPadding * MODERN_TAG_MULTIPLIER, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         canvas.drawRoundRect(formattedBounds, tagBorderRadius, tagBorderRadius, backgroundPaint);
         float xPosition = formattedBounds.right - tagRightPadding;
@@ -196,47 +211,59 @@ public class TagView extends TextView {
     }
 
     private void drawTrapeziumReversedTag(Rect bounds, Canvas canvas) {
-        setPadding(tagLeftPadding * 3, tagTopPadding, tagRightPadding, tagBottomPadding);
+        setPadding(tagLeftPadding * TRAPEZIUM_TAG_MULTIPLIER, tagTopPadding, tagRightPadding, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.left += tagRightPadding * 3;
-        float y = (rect.bottom - rect.top) / 2;
+        rect.left += tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER;
+        float halfOfRectHeight= (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
-        Path trianglePath = getReversedTrianglePath(rect, y);
+        Path trianglePath = getReversedTrianglePath(rect, halfOfRectHeight);
         canvas.drawPath(trianglePath, trianglePaint);
         setTextColor(tagTextColor);
     }
 
     private void drawModernTrapeziumReversedTag(Rect bounds, Canvas canvas) {
-        setPadding(tagLeftPadding * 3, tagTopPadding, tagRightPadding * 2, tagBottomPadding);
+        setPadding(tagLeftPadding * TRAPEZIUM_TAG_MULTIPLIER, tagTopPadding, tagRightPadding * MODERN_TAG_MULTIPLIER, tagBottomPadding);
         RectF formattedBounds = getBoundsForText(bounds);
         RectF rect = new RectF(formattedBounds);
-        rect.left += tagRightPadding * 3;
-        float y = (rect.bottom - rect.top) / 2;
+        rect.left += tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER;
+        float halfOfRectHeight = (rect.bottom - rect.top) / 2;
         canvas.drawRect(rect, backgroundPaint);
         float xPosition = formattedBounds.right - tagRightPadding;
         float yPosition = (formattedBounds.bottom - formattedBounds.top) / 2;
         canvas.drawCircle(xPosition, yPosition, tagCircleRadius, circlePaint);
-        Path trianglePath = getReversedTrianglePath(rect, y);
+        Path trianglePath = getReversedTrianglePath(rect, halfOfRectHeight);
         canvas.drawPath(trianglePath, trianglePaint);
         setTextColor(tagTextColor);
     }
 
-    private Path getTrianglePath(RectF rect, float y) {
+    /**
+     * Returns filled colored triangles that used to draw trapezium tags
+     * @param rect - used to draw filled colored triangle (represented as Path object)
+     * @param halfOfRectHeight half of height of tag bounds
+     * @return Path object that represented as filled colored triangle
+     */
+    private Path getTrianglePath(RectF rect, float halfOfRectHeight) {
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
         path.moveTo(rect.right, rect.top);
-        path.lineTo(rect.right + tagRightPadding * 3, y);
+        path.lineTo(rect.right + tagRightPadding * TRAPEZIUM_TAG_MULTIPLIER, halfOfRectHeight);
         path.lineTo(rect.right, rect.bottom);
         path.lineTo(rect.right, rect.top);
         return path;
     }
 
-    private Path getReversedTrianglePath(RectF rect, float y) {
+    /**
+     * Returns filled colored triangles that used to draw trapezium tags
+     * @param rect - used to draw filled colored triangle (represented as Path object)
+     * @param halfOfRectHeight half of height of tag bounds
+     * @return Path object that represented as filled colored triangle
+     */
+    private Path getReversedTrianglePath(RectF rect, float halfOfRectHeight) {
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
         path.moveTo(rect.left, rect.top);
-        path.lineTo(rect.left - tagLeftPadding * 3, y);
+        path.lineTo(rect.left - tagLeftPadding * TRAPEZIUM_TAG_MULTIPLIER, halfOfRectHeight);
         path.lineTo(rect.left, rect.bottom);
         path.lineTo(rect.left, rect.top);
         return path;
@@ -352,6 +379,5 @@ public class TagView extends TextView {
         this.tagBottomPadding = tagBottomPadding;
         invalidate();
         requestLayout();
-
     }
 }

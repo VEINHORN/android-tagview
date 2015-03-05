@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagType="modern"
+            app:tagType="modern_trapezium_reversed"
             app:tagColor="#ffffbb33"
             app:tagUpperCase="true"/>
         <com.veinhorn.tagview.TagView
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagType="modern"
+            app:tagType="modern_reversed"
             app:tagColor="#bd292f34"
             app:tagUpperCase="true"/>
     </LinearLayout>
