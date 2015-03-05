@@ -57,7 +57,7 @@ The default padding values for TagView is:
 * top - 10dp
 * bottom - 10dp
 
-But you can set up your own padding with getters and setters.
+But you can set up your own padding using getters and setters.
 
 #Tag types
 * TagView.CLASSIC
@@ -69,12 +69,12 @@ But you can set up your own padding with getters and setters.
 * TagView.MODERN_TRAPEZIUM_REVERSED
 
 #Screenshots
-![ScreenShot](http://i.imgur.com/Kiu5jsI.png?1)
-![ScreenShot](http://i.imgur.com/mDMY9NO.png?2)
-![ScreenShot](http://i.imgur.com/cFIfF4d.png?1)
-![ScreenShot](http://i.imgur.com/qfTtlWv.png?1)
-![ScreenShot](http://i.imgur.com/V9cl2Ao.png?1)
-![ScreenShot](http://i.imgur.com/WUttZQv.png?1)
+![ScreenShot](http://i.imgur.com/Kiu5jsI.png?2)
+![ScreenShot](http://i.imgur.com/mDMY9NO.png?3)
+![ScreenShot](http://i.imgur.com/cFIfF4d.png?2)
+![ScreenShot](http://i.imgur.com/qfTtlWv.png?2)
+![ScreenShot](http://i.imgur.com/V9cl2Ao.png?2)
+![ScreenShot](http://i.imgur.com/WUttZQv.png?2)
 
 #License
 ===============
