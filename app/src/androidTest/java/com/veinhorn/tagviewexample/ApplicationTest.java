@@ -1,4 +1,4 @@
-package com.veinhorn.example;
+package com.veinhorn.tagviewexample;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
