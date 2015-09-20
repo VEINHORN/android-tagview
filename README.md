@@ -12,7 +12,7 @@ repositories {
 ```
 Add dependency:
 ```gradle
-compile 'com.veinhorn.tagview:library:1.0.3@aar'
+compile 'com.veinhorn.tagview:library:1.0.4@aar'
 ```
 
 #Usage
