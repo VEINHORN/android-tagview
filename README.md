@@ -1,18 +1,10 @@
 # Android TagView
 Android library for creating different tags for your content. Library uses TextView as a parent class. Example usages can be found in app module (folder).
 
-#Installation
-Add repository:
+#Gradle Dependency
+
 ```gradle
-repositories {
-  maven {
-    url "http://dl.bintray.com/veinhorn/maven"
-  }
-}
-```
-Add dependency:
-```gradle
-compile 'com.veinhorn.tagview:library:1.0.4@aar'
+compile 'com.veinhorn.tagview:library:1.0.4'
 ```
 
 #Usage
