@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.veinhorn.tagviewexample"
+        applicationId "com.veinhorn.tagview.example"
         minSdkVersion 7
         targetSdkVersion 23
         versionCode 1
@@ -20,6 +20,6 @@ android {
 }
 
 dependencies {
+    compile project(':library')
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.veinhorn.tagview:library:1.0.4@aar'
 }

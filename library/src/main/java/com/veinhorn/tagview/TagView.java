@@ -65,7 +65,7 @@ public class TagView extends TextView {
         @Override
         public void draw(Canvas canvas) {
             if(tagType == CLASSIC) drawClassicTag(getBounds(), canvas);
-            else if(tagType == MODERN) drawModernTag(getBounds(), canvas);
+            else if (tagType == MODERN) drawModernTag(getBounds(), canvas);
             else if(tagType == TRAPEZIUM) drawTrapeziumTag(getBounds(), canvas);
             else if(tagType == MODERN_TRAPEZIUM) drawModernTrapeziumTag(getBounds(), canvas);
             else if(tagType == MODERN_REVERSED) drawModernReversedTag(getBounds(), canvas);
