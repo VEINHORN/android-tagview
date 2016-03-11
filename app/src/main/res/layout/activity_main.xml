@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
         <com.veinhorn.tagview.TagView
@@ -20,9 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagType="modern"
+            app:tagType="classic"
             app:tagColor="#ffaa66cc"
             app:tagUpperCase="true"/>
+
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView2"
             android:text="Images"
@@ -35,6 +36,7 @@
             app:tagType="modern"
             app:tagColor="#ff669900"
             app:tagUpperCase="true"/>
+
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView3"
             android:text="Music"
@@ -44,9 +46,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagType="modern_trapezium_reversed"
+            app:tagType="reversed_modern"
             app:tagColor="#ffffbb33"
             app:tagUpperCase="true"/>
+
         <com.veinhorn.tagview.TagView
             android:id="@+id/tagView4"
             android:text="Other"
@@ -56,7 +59,33 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            app:tagType="modern_reversed"
+            app:tagType="sharp"
+            app:tagColor="#bd292f34"
+            app:tagUpperCase="true"/>
+
+        <com.veinhorn.tagview.TagView
+            android:id="@+id/tagView5"
+            android:text="Emoji"
+            android:layout_margin="5px"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:tagType="reversed_sharp"
+            app:tagColor="#bd292f34"
+            app:tagUpperCase="true"/>
+
+        <com.veinhorn.tagview.TagView
+            android:id="@+id/tagView6"
+            android:text="Smiles"
+            android:layout_margin="5px"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:tagType="reversed_modern_sharp"
             app:tagColor="#bd292f34"
             app:tagUpperCase="true"/>
     </LinearLayout>

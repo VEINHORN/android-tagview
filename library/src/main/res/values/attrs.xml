@@ -4,11 +4,11 @@
         <attr name="tagType" format="enum">
             <enum name="classic" value="0"/>
             <enum name="modern" value="1"/>
-            <enum name="trapezium" value="2"/>
-            <enum name="modern_trapezium" value="3"/>
-            <enum name="modern_reversed" value="4"/>
-            <enum name="trapezium_reversed" value="5"/>
-            <enum name="modern_trapezium_reversed" value="6"/>
+            <enum name="sharp" value="2"/>
+            <enum name="modern_sharp" value="3"/>
+            <enum name="reversed_modern" value="4"/>
+            <enum name="reversed_sharp" value="5"/>
+            <enum name="reversed_modern_sharp" value="6"/>
         </attr>
         <attr name="tagColor" format="color"/>
         <attr name="tagUpperCase" format="boolean"/>
