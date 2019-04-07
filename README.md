@@ -1,13 +1,17 @@
 # Android TagView
+
 Android library for creating different tags for your content. Library uses TextView as a parent class. Example usages can be found in app module (folder).
 
-#Gradle Dependency
+## Install
 
 ```gradle
 compile 'com.veinhorn.tagview:library:1.0.4'
 ```
 
-#Usage
+## Usage
+
+Add to your layout:
+
 ```xml
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +48,8 @@ compile 'com.veinhorn.tagview:library:1.0.4'
     </LinearLayout>
 </RelativeLayout>
 ```
-Customization
+
+## Customization
 ---------------
 TagView extends TextView, so you can use all TextView methods and xml properties
 
@@ -56,7 +61,8 @@ TagView extends TextView, so you can use all TextView methods and xml properties
 * ```tagCircleColor``` - color of tag circle that is inside of tag
 * ```tagTextColor``` - color of text
 
-#Padding
+### Padding
+
 The default padding values for TagView is:
 * left - 15dp
 * right - 15dp
@@ -65,7 +71,8 @@ The default padding values for TagView is:
 
 But you can set up your own padding using getters and setters.
 
-#Tag types
+### Tag types
+
 * TagView.CLASSIC
 * TagView.MODERN
 * TagView.TRAPEZIUM
@@ -74,7 +81,8 @@ But you can set up your own padding using getters and setters.
 * TagView.TRAPEZIUM_REVERSED
 * TagView.MODERN_TRAPEZIUM_REVERSED
 
-#Screenshots
+## Screenshots
+
 ![ScreenShot](http://i.imgur.com/Kiu5jsI.png?2)
 ![ScreenShot](http://i.imgur.com/mDMY9NO.png?3)
 ![ScreenShot](http://i.imgur.com/cFIfF4d.png?2)
@@ -82,9 +90,9 @@ But you can set up your own padding using getters and setters.
 ![ScreenShot](http://i.imgur.com/V9cl2Ao.png?2)
 ![ScreenShot](http://i.imgur.com/WUttZQv.png?2)
 
-#License
-===============
-        Copyright 2015 Boris Korogvich
+## License
+
+        Copyright 2019 Boris Korogvich
         
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
