@@ -1,3 +1,4 @@
+![tag-horizontal.png](https://cdn.steemitimages.com/DQmfXQCzLmnWhMavs1XJvT5tKwAthwZdkuPXrxUGVNSVcnr/tag-horizontal.png)
 # Android TagView
 
 Android library for creating different tags for your content. Library uses TextView as a parent class. Example usages can be found in app module (folder).
